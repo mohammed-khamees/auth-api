@@ -32,6 +32,10 @@ app.use(authRoutes);
 app.use('/api/v1', v1Routes);
 app.use('/api/v2', v2Routes);
 
+app.use('/bad', (req, res) => {
+	throw new Error();
+});
+
 // Catchalls
 app.use('*', notFound);
 app.use(errorHandler);

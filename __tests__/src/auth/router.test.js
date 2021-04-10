@@ -2,9 +2,9 @@
 
 process.env.SECRET = 'toes';
 
-const server = require('../src/server.js').server;
+const server = require('../../../src/server.js').server;
 const supergoose = require('@code-fellows/supergoose');
-const bearer = require('../src/auth/middleware/bearer.js');
+const bearer = require('../../../src/auth/middleware/bearer.js');
 
 const mockRequest = supergoose(server);
 
@@ -12,12 +12,6 @@ let users = {
 	admin: { username: 'admin', password: 'password', role: 'admin' },
 	editor: { username: 'editor', password: 'password', role: 'editor' },
 	user: { username: 'user', password: 'password', role: 'user' },
-};
-
-let food = {
-	name: 'pizza',
-	calories: '2',
-	type: 'VEGETABLE',
 };
 
 describe('Auth Router', () => {
@@ -98,75 +92,3 @@ describe('Auth Router', () => {
 		});
 	});
 });
-
-// describe('APi ', () => {
-// 	describe('V1', () => {
-// 		it('should return all the objects', async () => {
-// 			const response = await mockRequest.get(`api/vi/food`).send(food);
-// 			const userObject = response.body;
-
-// 			console.log(userObject);
-
-// 			expect(response.status).toBe(200);
-// 			expect(userObject.type).not.toBeDefined();
-// 			expect(userObject.name).not.toBeDefined();
-// 		});
-
-// 		it('basic fails with unknown user', async () => {
-// 			const response = await mockRequest.get('/get').auth('nobody', 'xyz');
-// 			const userObject = response.body;
-
-// 			expect(response.status).toBe(403);
-// 			expect(userObject.user).not.toBeDefined();
-// 			expect(userObject.token).not.toBeDefined();
-// 		});
-
-// 		it('basic fails with unknown user', async () => {
-// 			const response = await mockRequest.get('/get').auth('nobody', 'xyz');
-// 			const userObject = response.body;
-
-// 			expect(response.status).toBe(403);
-// 			expect(userObject.user).not.toBeDefined();
-// 			expect(userObject.token).not.toBeDefined();
-// 		});
-
-// 		it('basic fails with unknown user', async () => {
-// 			const response = await mockRequest.get('/get').auth('nobody', 'xyz');
-// 			const userObject = response.body;
-
-// 			expect(response.status).toBe(403);
-// 			expect(userObject.user).not.toBeDefined();
-// 			expect(userObject.token).not.toBeDefined();
-// 		});
-// 	});
-
-// 	describe('V2', () => {
-// 		it('basic fails with known user and wrong password ', async () => {
-// 			const response = await mockRequest.post('/signin').auth('admin', 'xyz');
-// 			const userObject = response.body;
-
-// 			expect(response.status).toBe(403);
-// 			expect(userObject.user).not.toBeDefined();
-// 			expect(userObject.token).not.toBeDefined();
-// 		});
-
-// 		it('basic fails with unknown user', async () => {
-// 			const response = await mockRequest.post('/signin').auth('nobody', 'xyz');
-// 			const userObject = response.body;
-
-// 			expect(response.status).toBe(403);
-// 			expect(userObject.user).not.toBeDefined();
-// 			expect(userObject.token).not.toBeDefined();
-// 		});
-
-// 		it('bearer fails with an invalid token', async () => {
-// 			// First, use basic to login to get a token
-// 			const bearerResponse = await mockRequest
-// 				.get('/users')
-// 				.set('Authorization', `Bearer foobar`);
-
-// 			// Not checking the value of the response, only that we "got in"
-// 			expect(bearerResponse.status).toBe(403);
-// 		});
-// 	});
-// });
